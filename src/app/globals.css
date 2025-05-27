@@ -1,26 +1,191 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  1. Base CSS Reset & Box Sizing
+  -----------------------------------------------------------------------------
+  A minimal reset for consistent cross-browser rendering and easier styling.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Light Theme Colors */
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+  --color-muted: #f8fafc;
+  --color-muted-foreground: #64748b;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #0f172a;
+  --color-card: #ffffff;
+  --color-card-foreground: #0f172a;
+  --color-border: #e2e8f0;
+  --color-input: #e2e8f0;
+  --color-ring: #3b82f6;
+
+  /* Primary Colors */
+  --color-primary: #3b82f6;
+  --color-primary-foreground: #ffffff;
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+
+  /* Secondary Colors */
+  --color-secondary: #f1f5f9;
+  --color-secondary-foreground: #0f172a;
+
+  /* Accent Colors */
+  --color-accent: #f1f5f9;
+  --color-accent-foreground: #0f172a;
+
+  /* Destructive Colors */
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+
+  /* Success Colors */
+  --color-success: #22c55e;
+  --color-success-foreground: #ffffff;
+
+  /* Warning Colors */
+  --color-warning: #f59e0b;
+  --color-warning-foreground: #ffffff;
+
+  /* Custom Fonts */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-fira-code), ui-monospace, monospace;
+
+  /* Border Radius */
+  --radius: 0.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Dark Theme Colors */
+.dark {
+  --color-background: #020617;
+  --color-foreground: #f8fafc;
+  --color-muted: #0f172a;
+  --color-muted-foreground: #94a3b8;
+  --color-popover: #0f172a;
+  --color-popover-foreground: #f8fafc;
+  --color-card: #0f172a;
+  --color-card-foreground: #f8fafc;
+  --color-border: #1e293b;
+  --color-input: #1e293b;
+  --color-ring: #3b82f6;
+
+  /* Primary Colors in Dark Mode */
+  --color-primary: #3b82f6;
+  --color-primary-foreground: #ffffff;
+  --color-primary-50: #1e3a8a;
+  --color-primary-100: #1e40af;
+  --color-primary-200: #1d4ed8;
+  --color-primary-300: #2563eb;
+  --color-primary-400: #3b82f6;
+  --color-primary-500: #60a5fa;
+  --color-primary-600: #93c5fd;
+  --color-primary-700: #bfdbfe;
+  --color-primary-800: #dbeafe;
+  --color-primary-900: #eff6ff;
+
+  /* Secondary Colors in Dark Mode */
+  --color-secondary: #1e293b;
+  --color-secondary-foreground: #f8fafc;
+
+  /* Accent Colors in Dark Mode */
+  --color-accent: #1e293b;
+  --color-accent-foreground: #f8fafc;
+
+  /* Destructive Colors in Dark Mode */
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+
+  /* Success Colors in Dark Mode */
+  --color-success: #16a34a;
+  --color-success-foreground: #ffffff;
+
+  /* Warning Colors in Dark Mode */
+  --color-warning: #d97706;
+  --color-warning-foreground: #ffffff;
 }
 
+/*
+  2. CSS Variables for Theming (Light and Dark Modes)
+  -----------------------------------------------------------------------------
+  Define color variables for light mode by default on the :root.
+  Then, override these variables within the .dark class for dark mode.
+*/
+
+/*
+  3. Global Font Application and Base Styles
+  -----------------------------------------------------------------------------
+  Apply the Quicksand font and theme colors globally.
+  The --font-quicksand variable is provided by Next.js's next/font.
+  We explicitly add generic fallbacks as a safety measure.
+*/
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+  width: 100%;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+
+  /* Apply Quicksand with generic sans-serif fallbacks */
+  font-family: var(--font-quicksand), 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+
+  /* Apply theme colors */
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme changes */
 }
+
+/*
+  4. Typography Defaults
+  -----------------------------------------------------------------------------
+  Set default font sizes and weights for headings and paragraphs.
+*/
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700; /* Bold by default for headings */
+  margin-bottom: 0.5em; /* Headings also use text color */
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+p {
+  font-size: 1rem;
+  margin-bottom: 1em;
+}
+
+/*
+  5. Link Styles
+  -----------------------------------------------------------------------------
+*/
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
