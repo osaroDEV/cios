@@ -12,9 +12,6 @@ const DropdownMenu = () => (
      <Link href='/courses' className='w-15 inline'>
       <span className='hover:text-blue-800 hover:underline'>Courses</span>
     </Link>
-    {/*<Link href='/jobseekers' className='text-foreground'>
-      Jobseekers
-    </Link> */}
     <Button>Get Started</Button>
   </div>
 );
