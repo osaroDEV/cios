@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: 'Home: Code Illustrated Online School',
   description: 'An online coding school for aspiring Software Engineers',
   icons: {
-    icon: '/favicon.ico',
+    icon: '/code-ill.svg',
   },
 };
 
