@@ -10,9 +10,9 @@ import Image from 'next/image';
 const DropdownMenu = () => (
   <div className='flex flex-col gap-4 p-6 shadow-lg rounded-b-lg'>
      <Link href='/courses' className='w-15 inline'>
-      <span className='hover:text-blue-800 hover:underline'>Courses</span>
+      <span className='hover:text-blue-800 hover:underline dark:text-white dark:hover:text-blue-400'>Courses</span>
     </Link>
-    <Button>Get Started</Button>
+    <Button className='h-12.5 cursor-pointer'>Get Started</Button>
   </div>
 );
 
@@ -38,7 +38,7 @@ const Header = () => {
             variant='ghost'
             size='icon'
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className='rounded-full'
+            className='rounded-full cursor-pointer'
           >
             <Sun className='rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
             <Moon className='absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
